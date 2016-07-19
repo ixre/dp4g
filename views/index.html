@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>dp4g</title>
+    <link rel="stylesheet" href="/assets/su/semantic.min.css?span={{.TimeSpan}}"/>
+    <link rel="stylesheet" href="/assets/css/godp.css?span={{.TimeSpan}}"/>
+    <link rel="stylesheet" href="/assets/awesome/font-awesome.min.css?span={{.TimeSpan}}"/>
+    <style type="text/css">
+        body{padding:0}
+        .page-summary{padding:2em;}
+    </style>
+</head>
+<body style="padding:0">
+<header>
+    <h1>dp4g - A simple develop platform for golang.</h1>
+    <div class="btn-func">
+        <i class="fa fa-bars" aria-hidden="true"></i>Menu
+    </div>
+</header>
+
+<div class="main">
+    <div class="func-menu hidden"></div>
+    <div class="page-tabs">
+        <div title="Welcome" href="#"></div>
+        <div class="frames page-frames" id="frames1">
+            <div class="frame">
+                <div class="page-summary">
+                    Hello,world!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/assets/js/lib/jquery.3x.js?span={{.TimeSpan}}"></script>
+<script src="/assets/su/semantic.min.js?span={{.TimeSpan}}"></script>
+<script src="/assets/js/jr/core.js?span={{.TimeSpan}}"></script>
+<script src="/assets/js/jr/tab.js?span={{.TimeSpan}}"></script>
+<script src="/assets/js/jr/animation.js?span={{.TimeSpan}}"></script>
+
+<script type="text/javascript">
+    var TAB = jr.tab.init({
+        frames: jr.$('frames1'),
+    });
+    var funcMenu = jr.dom.getsByClass(document, 'func-menu')[0];
+    function toggleMenu() {
+        jr.animation.toggleHeight(funcMenu, null, 60);
+    }
+    jr.load(funcMenu, "/page/menu.html", function () {
+        jr.each(funcMenu.getElementsByTagName('DIV'), function (i, e) {
+            var url = e.getAttribute('href');
+            if (url) {
+                e.onclick = (function (u, t) {
+                    return function () {
+                        TAB.show(t, u, true);
+                        toggleMenu();
+                    };
+                })(url, e.innerHTML);
+            }
+        })
+    });
+
+    jr.dom.getsByClass(document, 'btn-func')[0].onclick = toggleMenu;
+</script>
+</body>
+</html>
