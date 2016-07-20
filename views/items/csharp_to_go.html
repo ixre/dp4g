@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ODL-TO-GO</title>
+    <link rel="stylesheet" href="/assets/su/semantic.min.css?span={{.TimeSpan}}"/>
+</head>
+<body>
+
+<div id="form1" class="ui form margin" style="padding:10px">
+    <div class="two fields">
+        <div class="field">
+            <label>C# Code：</label>
+            <div class="ui input code">
+                <textarea field="src" rows="20"></textarea>
+            </div>
+        </div>
+        <div class="field">
+            <label>Go Code：</label>
+            <div class="ui input">
+                <textarea field="code" rows="20"></textarea>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="field right">
+
+        <div class="ui check checkbox">
+            <input type="checkbox" field="fmt" id="fmt"/><label for="fmt">Format</label>
+        </div>
+
+        <div class="ui primary button" id="btn_save">
+            Decode
+        </div>
+    </div>
+
+</div>
+
+<script src="{{.Var.StaticServe}}/assets/js/lib/jquery.3x.js?span={{.TimeSpan}}"></script>
+<script src="{{.Var.StaticServe}}/assets/su/semantic.min.js?span={{.TimeSpan}}"></script>
+<script src="{{.Var.StaticServe}}/assets/js/jr/core.js?span={{.TimeSpan}}"></script>
+
+<script type="text/javascript">
+    function decode() {
+        var data = jr.json.toObject('form1');
+        data.action = 'csharp2go';
+        if(data.src.length == 0){
+            jr.dialog.alert('please typing source code!');
+            return false;
+        }
+        jr.xhr.post('/p', data, function (r) {
+            jr.json.bind('form1',{code:r});
+        });
+    }
+    jr.$('btn_save').onclick = decode;
+</script>
+</body>
+</html>

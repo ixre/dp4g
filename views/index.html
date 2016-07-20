@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/assets/css/godp.css?span={{.TimeSpan}}"/>
     <link rel="stylesheet" href="/assets/awesome/font-awesome.min.css?span={{.TimeSpan}}"/>
     <style type="text/css">
-        body{padding:0}
+        body{padding:0;overflow:hidden;}
         .page-summary{padding:2em;}
     </style>
 </head>
@@ -47,6 +47,9 @@
     function toggleMenu() {
         jr.animation.toggleHeight(funcMenu, null, 60);
     }
+    function resizeWin() {
+        TAB.frames.style.height=(document.documentElement.offsetHeight - 80)+'px';
+    }
     jr.load(funcMenu, "/page/menu.html", function () {
         jr.each(funcMenu.getElementsByTagName('DIV'), function (i, e) {
             var url = e.getAttribute('href');
@@ -60,8 +63,9 @@
             }
         })
     });
-
     jr.dom.getsByClass(document, 'btn-func')[0].onclick = toggleMenu;
+    window.resize = resizeWin();
+    resizeWin();
 </script>
 </body>
 </html>
