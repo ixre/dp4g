@@ -25,13 +25,23 @@
 
     <div class="field right">
 
-        <div class="ui check checkbox">
-            <input type="checkbox" field="fmt" id="fmt"/><label for="fmt">Format</label>
-        </div>
 
         <div class="ui primary button" id="btn_save">
             Decode
         </div>
+
+
+        <strong>Options:</strong>&nbsp;&nbsp;&nbsp;
+        <div class="ui check checkbox">
+            <input type="checkbox" field="fmt" id="fmt" checked="checked"/>
+            <label for="fmt">Format</label>
+        </div>
+
+        <div class="ui check checkbox">
+            <input type="checkbox" field="dbMapping" id="dbMapping" checked="checked"/>
+            <label for="dbMapping">Entity DB Mapping</label>
+        </div>
+
     </div>
 
 </div>
@@ -50,6 +60,8 @@
         }
         jr.xhr.post('/p', data, function (r) {
             jr.json.bind('form1',{code:r});
+        },function(){
+            jr.dialog.alert('can\'t connect to server')
         });
     }
     jr.$('btn_save').onclick = decode;

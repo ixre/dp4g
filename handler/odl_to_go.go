@@ -26,7 +26,7 @@ func NewOdlToGo() *odlToGo {
 	}
 }
 
-func (o *odlToGo) Parse(code string, fmt bool) []byte {
+func (o *odlToGo) Parse(code string, options map[string]string) []byte {
 	o.mux.Lock()
 	defer o.mux.Unlock()
 	o.buf.Write([]byte("it's ok!"))

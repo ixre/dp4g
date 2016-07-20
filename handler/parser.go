@@ -9,50 +9,56 @@
 package handler
 
 import (
-	"net/http"
-	"strconv"
-	"sync"
+    "net/http"
+    "sync"
 )
 
 var (
-	parserMap map[string]Parser
-	mux       sync.Mutex
+    parserMap map[string]Parser
+    mux sync.Mutex
 )
 
 type Parser interface {
-	Parse(code string, fmt bool) []byte
+    Parse(code string, options map[string]string) []byte
 }
 
 func parserInit() {
-	mux.Lock()
-	defer mux.Unlock()
-	if parserMap == nil {
-		parserMap = map[string]Parser{
-			"odl2go":    NewOdlToGo(),
-			"csharp2go": NewCsharpToGo(),
-		}
-	}
+    mux.Lock()
+    defer mux.Unlock()
+    if parserMap == nil {
+        parserMap = map[string]Parser{
+            "odl2go":    NewOdlToGo(),
+            "csharp2go": NewCsharpToGo(),
+        }
+    }
 }
 
 // 处理程序
 func ParseCode(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "POST" {
-		w.Write([]byte("Godp v0.1"))
-		return
-	}
-	parserInit()
-	r.ParseForm()
-	action := r.Form.Get("action")
-	code := r.Form.Get("src")
-	fmtStr := r.Form.Get("fmt")
-	fmt := fmtStr == "on"
-	if !fmt {
-		fmt, _ = strconv.ParseBool(fmtStr)
-	}
-	if p, ok := parserMap[action]; ok {
-		w.Header().Add("Content-Type", "text/plan")
-		w.Write(p.Parse(code, fmt))
-	} else {
-		w.Write([]byte("not implement " + action))
-	}
+    if r.Method != "POST" {
+        w.Write([]byte("Godp v0.1"))
+        return
+    }
+    parserInit()
+    r.ParseForm()
+    action := r.Form.Get("action")
+    code := r.Form.Get("src")
+
+    options := make(map[string]string)
+    for k, v := range r.Form {
+        if k == "action" || k == "src" {
+            continue
+        }
+        if v[0] == "on" {
+            v[0] = "true"
+        }
+        options[k] = v[0]
+    }
+
+    if p, ok := parserMap[action]; ok {
+        w.Header().Add("Content-Type", "text/plan")
+        w.Write(p.Parse(code, options))
+    } else {
+        w.Write([]byte("not implement " + action))
+    }
 }
