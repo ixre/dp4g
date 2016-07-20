@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>将GO对象生成表单</title>
+    <link rel="stylesheet" href="/assets/su/semantic.min.css?span={{.TimeSpan}}"/>
+    <link rel="stylesheet" href="/assets/css/godp.css?span={{.TimeSpan}}"/>
+    <link rel=stylesheet href="/assets/codemirror/lib/codemirror.css"/>
+</head>
+<body>
+
+<div id="form1" class="ui form margin" style="padding:10px">
+    <div class="two fields">
+        <div class="field">
+            <label>Go Struct Code：</label>
+            <div class="ui input1 code">
+                <textarea field="src" rows="25" id="src_editor"></textarea>
+            </div>
+        </div>
+        <div class="field">
+            <label>Html Code：</label>
+            <div class="ui input1 code">
+                <textarea field="code" rows="25" id="code_editor"></textarea>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="field right">
+
+
+        <div class="ui primary button" id="btn_save">
+            Decode
+        </div>
+
+        <strong>Options:</strong>&nbsp;&nbsp;&nbsp;
+        <div class="ui check checkbox">
+            <input type="checkbox" field="fmt" id="fmt" checked="checked"/>
+            <label for="fmt">Format</label>
+        </div>
+
+        &nbsp;&nbsp;<strong>Columns(1-5):</strong>
+        <div class="ui input" style="width:120px">
+            <input type="text" field="columns" value="2"/>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{.Var.StaticServe}}/assets/js/lib/jquery.3x.js?span={{.TimeSpan}}"></script>
+<script src="{{.Var.StaticServe}}/assets/su/semantic.min.js?span={{.TimeSpan}}"></script>
+<script src="/assets/js/jr/core.js?span={{.TimeSpan}}"></script>
+<script src="/assets/codemirror/lib/codemirror.js"></script>
+<script src="/assets/codemirror/mode/go/go.js"></script>
+<script src=/assets/codemirror/mode/xml/xml.js></script>
+<script src=/assets/codemirror/mode/css/css.js></script>
+<script src="/assets/codemirror/mode/javascript/javascript.js"></script>
+<script src="/assets/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+
+<script type="text/javascript">
+
+    var editor = CodeMirror.fromTextArea(document.getElementById("src_editor"), {
+        mode: "text/x-go",
+        lineNumbers: true,
+        lineWrapping: true,
+        height:600,
+    });
+    var editor2 = CodeMirror.fromTextArea(document.getElementById("code_editor"), {
+        mode: "text/html",
+        lineNumbers: true,
+        lineWrapping: true
+    });
+
+    function decode() {
+        var data = jr.json.toObject('form1');
+        data.src = editor.getValue();
+        data.action = 'go-entity-form';
+        if(data.src.length == 0){
+            jr.dialog.alert('please typing source code!');
+            return false;
+        }
+        jr.xhr.post('/p', data, function (r) {
+            editor2.setValue(r);
+        },function(){
+            jr.dialog.alert('can\'t connect to server')
+        });
+    }
+    jr.$('btn_save').onclick = decode;
+</script>
+</body>
+</html>

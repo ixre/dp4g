@@ -9,5 +9,5 @@
 package parser
 
 type Parser interface {
-    Parse(code string, options map[string]string) []byte
+	Parse(code string, options map[string]string) []byte
 }

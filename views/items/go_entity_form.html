@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="/assets/su/semantic.min.css?span={{.TimeSpan}}"/>
 </head>
 <body>
-
 <div id="form1" class="ui form margin" style="padding:10px">
     <div class="two fields">
         <div class="field">
@@ -47,10 +46,10 @@
 
 <script src="{{.Var.StaticServe}}/assets/js/lib/jquery.3x.js?span={{.TimeSpan}}"></script>
 <script src="{{.Var.StaticServe}}/assets/su/semantic.min.js?span={{.TimeSpan}}"></script>
-<script src="{{.Var.StaticServe}}/assets/js/jr/core.js?span={{.TimeSpan}}"></script>
+<script src="/assets/js/jr/core.js?span={{.TimeSpan}}"></script>
 
 <script type="text/javascript">
-    function decode() {
+    function decode(){
         var data = jr.json.toObject('form1');
         data.action = 'go-entity-form';
         if(data.src.length == 0){
@@ -64,6 +63,6 @@
         });
     }
     jr.$('btn_save').onclick = decode;
-</script>
+    </script>
 </body>
 </html>
