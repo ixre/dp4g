@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ODL-TO-GO</title>
+    <title>Go interface implement</title>
     <link rel="stylesheet" href="/assets/su/semantic.min.css?span={{.TimeSpan}}"/>
 </head>
 <body>
@@ -9,8 +9,8 @@
 <div id="form1" class="ui form margin" style="padding:10px">
     <div class="two fields">
         <div class="field">
-            <label>ODL Code：</label>
-            <div class="ui input">
+            <label>Go Interface Code：</label>
+            <div class="ui input code">
                 <textarea field="src" rows="20"></textarea>
             </div>
         </div>
@@ -24,9 +24,17 @@
 
 
     <div class="field right">
+
         <div class="ui primary button" id="btn_save">
             Decode
         </div>
+
+        <strong>Options:</strong>&nbsp;&nbsp;&nbsp;
+        <div class="ui check checkbox">
+            <input type="checkbox" field="fmt" id="fmt" checked="checked"/>
+            <label for="fmt">Format</label>
+        </div>
+
     </div>
 
 </div>
@@ -38,13 +46,15 @@
 <script type="text/javascript">
     function decode() {
         var data = jr.json.toObject('form1');
-        data.action = 'odl-to-go';
+        data.action = 'go-iface-impl';
         if(data.src.length == 0){
             jr.dialog.alert('please typing source code!');
             return false;
         }
         jr.xhr.post('/p', data, function (r) {
             jr.json.bind('form1',{code:r});
+        },function(){
+            jr.dialog.alert('can\'t connect to server')
         });
     }
     jr.$('btn_save').onclick = decode;

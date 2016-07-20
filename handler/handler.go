@@ -30,9 +30,10 @@ func parserInit() {
     defer mux.Unlock()
     if parserMap == nil {
         parserMap = map[string]parser.Parser{
-            "odl2go":    parser.NewOdlToGo(),
-            "csharp2go": parser.NewCsharpToGo(),
+            "odl-to-go":    parser.NewOdlToGo(),
+            "csharp-to-go": parser.NewCsharpToGo(),
             "go-entity-form":parser.NewGoEntityForm(),
+            "go-iface-impl":parser.NewIfaceImpl(),
         }
     }
 }
