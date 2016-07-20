@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CSharp-TO-GO</title>
+    <title>将GO对象生成表单</title>
     <link rel="stylesheet" href="/assets/su/semantic.min.css?span={{.TimeSpan}}"/>
 </head>
 <body>
@@ -9,13 +9,13 @@
 <div id="form1" class="ui form margin" style="padding:10px">
     <div class="two fields">
         <div class="field">
-            <label>C# Code：</label>
+            <label>Go Struct Code：</label>
             <div class="ui input code">
                 <textarea field="src" rows="20"></textarea>
             </div>
         </div>
         <div class="field">
-            <label>Go Code：</label>
+            <label>Html Code：</label>
             <div class="ui input">
                 <textarea field="code" rows="20"></textarea>
             </div>
@@ -30,16 +30,15 @@
             Decode
         </div>
 
-
         <strong>Options:</strong>&nbsp;&nbsp;&nbsp;
         <div class="ui check checkbox">
             <input type="checkbox" field="fmt" id="fmt" checked="checked"/>
             <label for="fmt">Format</label>
         </div>
 
-        <div class="ui check checkbox">
-            <input type="checkbox" field="dbMapping" id="dbMapping" checked="checked"/>
-            <label for="dbMapping">Entity DB Mapping</label>
+        &nbsp;&nbsp;<strong>Columns(1-5):</strong>
+        <div class="ui input" style="width:120px">
+            <input type="text" field="columns" value="2"/>
         </div>
 
     </div>
@@ -53,7 +52,7 @@
 <script type="text/javascript">
     function decode() {
         var data = jr.json.toObject('form1');
-        data.action = 'csharp2go';
+        data.action = 'go-entity-form';
         if(data.src.length == 0){
             jr.dialog.alert('please typing source code!');
             return false;

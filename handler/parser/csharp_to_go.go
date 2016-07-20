@@ -6,13 +6,14 @@
  * description :
  * history :
  */
-package handler
+package parser
 
 import (
 	"bytes"
 	"regexp"
 	"strings"
 	"sync"
+	"github.com/jsix/dp4g/handler/util"
 )
 
 var _ Parser = new(csharpToGo)
@@ -37,7 +38,7 @@ func (o *csharpToGo) Parse(code string,options map[string]string) []byte {
 	o.buf.Reset()
     if options["fmt"] == "true"{
 		var err error
-		codeBytes, err = GoFmt(string(codeBytes))
+		codeBytes, err = util.GoFmt(string(codeBytes))
 		if err != nil {
 			return []byte("Error:" + err.Error())
 		}

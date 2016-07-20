@@ -6,7 +6,7 @@
  * description :
  * history :
  */
-package handler
+package util
 
 import (
 	"errors"
