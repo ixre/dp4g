@@ -25,7 +25,7 @@
         },
         closeAndRefresh: function (title) {
             if (this.check()) {
-                var win = this.getWin().FwTab.getWindow(title);
+                var win = this.getWin().FwTab.getTargetWindow(title);
                 if (win != null) {
                     if (win.refresh)
                         win.refresh();

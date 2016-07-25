@@ -57,7 +57,7 @@ var expr = {
             + this.handlerPrefix
             + 'setup?portal=' + expr.portal
             + '&params=' + expr._getParams();
-        PW.getWindow(url, title || '导出数据', width || 400, height || 300);
+        PW.getTargetWindow(url, title || '导出数据', width || 400, height || 300);
     },
     search: function (id) {
         if (jr.dataGrid) { //jr

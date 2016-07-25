@@ -16,6 +16,9 @@ import (
 	"sync"
 )
 
+//todo: bug list:
+// [1]: 类名包含"_",会被revertRegexp匹配到
+
 var _ Parser = new(csharpToGo)
 
 type csharpToGo struct {
@@ -49,15 +52,19 @@ func (o *csharpToGo) Parse(code string, options map[string]string) []byte {
 var (
 	namespaceRegexp  = regexp.MustCompile("([\\S\\s]+)namespace (.+?){([\\S\\s]+)}")
 	usingReg         = regexp.MustCompile("using (.+?);")
-	typeReg          = regexp.MustCompile("([a-zA-Z]+\\s+)*(interface|class)\\s+(\\w+\\s*)")
+	typeReg          = regexp.MustCompile(`([a-zA-Z]+\s+)*(interface|class)\s+(\w+\s*)`)
 	methodCommentReg = regexp.MustCompile("///\\s<summary>(\\s+///)+(.+)\\s+///\\s</summary>")
-	revertParamsReg  = regexp.MustCompile("([a-zA-Z]+\\s)*(\\w+)_(\\w+)(,*)") // 颠倒函数参数定义的顺序
+	revertParamsReg  = regexp.MustCompile(`([a-zA-Z]+\s)*(\w+)_(\w+)(,*)`) // 颠倒函数参数定义的顺序
 	methodReg        = regexp.MustCompile(`(public|private|static|\s)*([^\s]+)*\s+([A-Za-z0-9]+)\(([^\)]*)\);*(\{[\s\S]+\})*`)
 	propertyReg      = regexp.MustCompile(`(\w+\s)(\w+\s)(.+?);`)
 )
 
 func (o *csharpToGo) fixCode(code string, options map[string]string) string {
-	code = namespaceRegexp.ReplaceAllString(code, "package $2\n$1\n$3")
+	if namespaceRegexp.MatchString(code) {
+		code = namespaceRegexp.ReplaceAllString(code, "package $2\n$1\n$3")
+	} else {
+		code = "package main\n" + code
+	}
 	code = usingReg.ReplaceAllStringFunc(code, func(str string) string {
 		if strings.Index(str, "System") != -1 {
 			return ""
