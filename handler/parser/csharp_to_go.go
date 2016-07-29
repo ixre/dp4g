@@ -52,11 +52,12 @@ func (o *csharpToGo) Parse(code string, options map[string]string) []byte {
 var (
 	namespaceRegexp  = regexp.MustCompile("([\\S\\s]+)namespace (.+?){([\\S\\s]+)}")
 	usingReg         = regexp.MustCompile("using (.+?);")
-	typeReg          = regexp.MustCompile(`([a-zA-Z]+\s+)*(interface|class)\s+(\w+\s*)`)
+	typeReg          = regexp.MustCompile(`((public|private|static|internal)\s+)*(interface|class)\s+(\w+\s*)`)
 	methodCommentReg = regexp.MustCompile("///\\s<summary>(\\s+///)+(.+)\\s+///\\s</summary>")
-	revertParamsReg  = regexp.MustCompile(`([a-zA-Z]+\s)*(\w+)_(\w+)(,*)`) // 颠倒函数参数定义的顺序
+	revertParamsReg  = regexp.MustCompile(`([a-zA-Z]+\s)*(\w+)_(\w+)\s*(,|\))`) // 颠倒函数参数定义的顺序
 	methodReg        = regexp.MustCompile(`(public|private|static|\s)*([^\s]+)*\s+([A-Za-z0-9]+)\(([^\)]*)\);*(\{[\s\S]+\})*`)
 	propertyReg      = regexp.MustCompile(`(\w+\s)(\w+\s)(.+?);`)
+	emptyReturnReg = regexp.MustCompile(`\)\(([^\s,]*)\)`) //去掉多余的参数
 )
 
 func (o *csharpToGo) fixCode(code string, options map[string]string) string {
@@ -71,14 +72,14 @@ func (o *csharpToGo) fixCode(code string, options map[string]string) string {
 		}
 		return "import \"$1\""
 	})
-	code = typeReg.ReplaceAllString(code, "type $3 $2")
+	code = typeReg.ReplaceAllString(code, "type $4 $3")
 	code = methodCommentReg.ReplaceAllString(code, "//$2")
 	code = revertParamsReg.ReplaceAllString(code, "$3 $2$4")
 	code = methodReg.ReplaceAllString(code, "\n$3($4)($2)$5")
+	code = emptyReturnReg.ReplaceAllString(code,")$1")
 	if options["dbMapping"] == "true" {
 		code = propertyReg.ReplaceAllString(code, "$3 $2 `db:\"$3\"`")
 	} else {
-
 		code = propertyReg.ReplaceAllString(code, "$3 $2")
 	}
 	code = o.replaceKeywords(code)
