@@ -9,5 +9,5 @@
 package conf
 
 var(
-    TmpPath string = "./tmp"
+    TmpPath string = "tmp"
 )
