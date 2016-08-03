@@ -16,6 +16,7 @@ import (
 	"os"
 	"sync"
 	"time"
+	"github.com/jsix/dp4g/handler/conf"
 )
 
 var (
@@ -52,14 +53,14 @@ func init() {
 }
 
 func createTmpEnv() error {
-	fi, err := os.Stat("tmp")
+	fi, err := os.Stat(conf.TmpPath)
 	if err == nil {
 		if !fi.IsDir() {
 			return errors.New("tmp not dir")
 		}
 		return nil
 	}
-	return os.Mkdir("tmp", os.ModePerm)
+	return os.Mkdir(conf.TmpPath, os.ModePerm)
 }
 
 // 首页
