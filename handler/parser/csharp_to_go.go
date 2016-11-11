@@ -57,7 +57,7 @@ var (
 	revertParamsReg  = regexp.MustCompile(`([a-zA-Z]+\s)*(\w+)_(\w+)\s*(,|\))`) // 颠倒函数参数定义的顺序
 	methodReg        = regexp.MustCompile(`(public|private|static|\s)*([^\s]+)*\s+([A-Za-z0-9]+)\(([^\)]*)\);*(\{[\s\S]+\})*`)
 	propertyReg      = regexp.MustCompile(`(\w+\s)(\w+\s)(.+?);`)
-	emptyReturnReg = regexp.MustCompile(`\)\(([^\s,]*)\)`) //去掉多余的参数
+	emptyReturnReg   = regexp.MustCompile(`\)\(([^\s,]*)\)`) //去掉多余的参数
 )
 
 func (o *csharpToGo) fixCode(code string, options map[string]string) string {
@@ -76,7 +76,7 @@ func (o *csharpToGo) fixCode(code string, options map[string]string) string {
 	code = methodCommentReg.ReplaceAllString(code, "//$2")
 	code = revertParamsReg.ReplaceAllString(code, "$3 $2$4")
 	code = methodReg.ReplaceAllString(code, "\n$3($4)($2)$5")
-	code = emptyReturnReg.ReplaceAllString(code,")$1")
+	code = emptyReturnReg.ReplaceAllString(code, ")$1")
 	if options["dbMapping"] == "true" {
 		code = propertyReg.ReplaceAllString(code, "$3 $2 `db:\"$3\"`")
 	} else {

@@ -8,6 +8,6 @@
  */
 package conf
 
-var(
-    TmpPath string = "tmp"
+var (
+	TmpPath string = "tmp"
 )

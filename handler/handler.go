@@ -10,13 +10,13 @@ package handler
 
 import (
 	"errors"
+	"github.com/jsix/dp4g/handler/conf"
 	"github.com/jsix/dp4g/handler/parser"
 	"github.com/jsix/gof"
 	"net/http"
 	"os"
 	"sync"
 	"time"
-	"github.com/jsix/dp4g/handler/conf"
 )
 
 var (

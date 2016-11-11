@@ -68,7 +68,7 @@
             if (typeof(v) == 'string') {
                 v = parseInt(v);
             }
-            return new Date(v * 1000).format("yyyy-MM-dd HH:mm:ss");
+            return new Date(v * 1000).format("yyyy-MM-dd HH:mm");
         },
         //unix转为时间
         unix2Date: function (v) {
