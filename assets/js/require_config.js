@@ -29,9 +29,6 @@ require.config({
             'jr/scroller':{
                 deps:['jr/core']
             },
-            'jr/ui.min':{
-                deps:['jr/core']
-            },
             'jr/dialog':{
                 deps:['jr/core']
             },
