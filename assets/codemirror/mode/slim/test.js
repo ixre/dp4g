@@ -46,10 +46,10 @@
      "[tag&bracket <][tag h1][tag&bracket >]Title[tag&bracket </][tag h1][tag&bracket >]");
 
   MT("rubyBlock",
-     "[operator&special =][variable-2 @item]");
+     "[operator&special =][variable-2 @product]");
 
   MT("selectorRubyBlock",
-     "[tag a][attribute&qualifier .test][operator&special =] [variable-2 @item]");
+     "[tag a][attribute&qualifier .test][operator&special =] [variable-2 @product]");
 
   MT("nestedRubyBlock",
       "[tag a]",

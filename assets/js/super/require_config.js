@@ -9,7 +9,7 @@ require.config({
         //except, if the module ID starts with "lib"
         paths: {
             shop: 'touch/shop', //以shop开头的前缀,从那个路径找文件
-            'mui':'../mui/js',
+            'mui':'../mui',
             'jquery':'../easyui/jquery.min',
             'jquery.easyui':'../easyui/jquery.easyui.min',
             'jquery.easyui.zh':'../easyui/locale/easyui-lang-zh_CN',

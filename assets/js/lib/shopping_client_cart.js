@@ -37,7 +37,7 @@ var cart = {
 				+ '.cart table .cart_q{width:15px;text-align:center;}'
 				+ '</style>';
         this.cp.innerHTML = (usetheme ? css : '') + '<table cellspacing="1"><tbody><tr class="cart_header"><th>名称</th><th>单价</th><th>数量</th><th>删除</th></tr></tbody></table>' +
-								 '<p class="center">共<span class="cart_tq">0</span>件，总价：￥<span class="cart_fee">0</span>元</p>';
+								 '<p class="center">共<span class="cart_tq">0</span>件，总价：￥<span class="cart-field total-amount">0</span>元</p>';
 
         this.retrieval();
 
@@ -145,7 +145,7 @@ var cart = {
         }
 
         var tqs = document.getElementsByClassName('cart_tq'),
-			tfs = document.getElementsByClassName('cart_fee');
+			tfs = document.getElementsByClassName('cart-amount');
 
         for (var i = 0; i < tqs.length; i++) {
             tqs[i].innerHTML = this.totalNum;

@@ -77,7 +77,7 @@ function fileUpload(arg) {
             content = /{[\s\S]*}/igm.exec(content);
             //返回的是Json字符
             if (content) {
-                sucessResult = jr.toJson(content);
+                sucessResult = JSON.parse(content);
             }
             t.onUploadComplete.apply(t, [true, sucessResult, _doc]);
             t.clear();

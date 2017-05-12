@@ -34,10 +34,10 @@
      "[tag&bracket <][tag h1][tag&bracket >]Title[tag&bracket </][tag h1][tag&bracket >]");
 
   MT("rubyBlock",
-     "[operator =][variable-2 @item]");
+     "[operator =][variable-2 @product]");
 
   MT("selectorRubyBlock",
-     "[tag %a.selector=] [variable-2 @item]");
+     "[tag %a.selector=] [variable-2 @product]");
 
   MT("nestedRubyBlock",
       "[tag %a]",

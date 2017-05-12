@@ -198,14 +198,14 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
       state.indentation = stream.column() + stream.current().length;
       state.list = true;
 
-      // While this list item's marker's indentation
-      // is less than the deepest list item's content's indentation,
-      // pop the deepest list item indentation off the stack.
+      // While this list product's marker's indentation
+      // is less than the deepest list product's content's indentation,
+      // pop the deepest list product indentation off the stack.
       while (state.listStack && stream.column() < state.listStack[state.listStack.length - 1]) {
         state.listStack.pop();
       }
 
-      // Add this list item's content's indentation to the stack
+      // Add this list product's content's indentation to the stack
       state.listStack.push(state.indentation);
 
       if (modeCfg.taskLists && stream.match(taskListRE, false)) {

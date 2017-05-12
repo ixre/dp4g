@@ -20,7 +20,7 @@ import (
 )
 
 var (
-	Template  *gof.CachedTemplate
+	Template  *gof.CacheTemplate
 	data      map[string]interface{}
 	parserMap map[string]parser.Parser
 	mux       sync.Mutex
@@ -40,11 +40,11 @@ func parserInit() {
 }
 
 func init() {
-	Template = gof.NewCachedTemplate("views/", true)
+	Template = gof.NewCacheTemplate("views/", true)
 	data = map[string]interface{}{
 		"TimeSpan": time.Now().Unix(),
 		"Author":   "jsix",
-		"SiteUrl":  "http://at3.net/me",
+		"SiteUrl":  "http://to2.net/me",
 	}
 	if err := createTmpEnv(); err != nil {
 		panic(err)

@@ -11,7 +11,7 @@ jr.extend({
             if (summaryKey) {
                 var summary = e.getAttribute('summary');
                 if (summary) {
-                    summary = jr.toJson(summary);
+                    summary = JSON.parse(summary);
                     if (summary[summaryKey]) {
                         msg = summary[summaryKey];
                     }

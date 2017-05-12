@@ -39,10 +39,10 @@
      "[comment % foo]");
 
   MT("tagComment",
-     "[tag \\item][comment % bar]");
+     "[tag \\product][comment % bar]");
 
   MT("commentTag",
-     " [comment % \\item]");
+     " [comment % \\product]");
 
   MT("commentLineBreak",
      "[comment %]",
@@ -52,7 +52,7 @@
      "[tag \\begin][error }][bracket {]");
 
   MT("tagErrorSquare",
-     "[tag \\item][error ]]][bracket {]");
+     "[tag \\product][error ]]][bracket {]");
 
   MT("commentCurly",
      "[comment % }]");

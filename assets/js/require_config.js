@@ -19,18 +19,18 @@ require.config({
             },
             'shop/base': {
                 //The underscore script dependency should be loaded before loading backbone.js
-                deps: ['jr/core'],
+                deps: [],
                 // use the global 'Backbone' as the module name.
                 exports: 'Main'
             },
             'uc/main':{
-                deps :['jr/core']
+                deps :[]
             },
             'jr/scroller':{
-                deps:['jr/core']
+                deps:[]
             },
             'jr/dialog':{
-                deps:['jr/core']
+                deps:[]
             },
             'jquery.slides':{
                 deps:['jquery']

@@ -91,7 +91,10 @@ AreaLoader.prototype = {
         params = params || {};
         params.code = code;
         jr.xhr.jsonPost(this.apiUrl,params, function (d) {
-            for (var i in d)t.appendOption(ele, d[i].code, d[i].name.trim());
+            alert(d[d.length-1].code);
+            for (var i =0;i<d.length;i++){
+                t.appendOption(ele, d[i].code, d[i].name.trim());
+            }
             if (ele.childNodes.length == 0)t.appendOption(ele, '', '--');
             //加载默认值
             if (!t.loadDefault(ele) || target == ele) {
