@@ -57,7 +57,7 @@ header h1{padding-left:160px;line-height:3em;margin:0;font-size:20px;color: #555
 
 
 /* 对话框 */
-.ui-dialog .bg{background:#FFF;opacity:0.2;filter:alpha(opacity=20);}
+.ui-dialog .dialog-mask{background:#FFF;opacity:0.2;filter:alpha(opacity=20);}
 .ui-dialog .box {
     padding-bottom:50px;
     -moz-box-shadow:0 0 5px 0 #bbb; /*firefox*/

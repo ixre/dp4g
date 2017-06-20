@@ -34,28 +34,28 @@ const (
 
 <script type="text/javascript">
     var entity = {};
-    var $B = {};
+
     var baseJsUrl ={{.Var.StaticServe}};
     require([baseJsUrl + '/assets/js/require_config.js'], function () {
         require(['base'], pageLoad);
     });
 
     function pageLoad(b) {
-        $B = b;
-        $B.json.bind('form1', entity);
 
-        $B.$('btn_save').onclick = function () {
-            if ($B.validator.validate('form1')) {
-                var data = $B.json.toObject('form1');
-                $B.xhr.jsonPost('', data, function (json) {
+        $b.json.bind('form1', entity);
+
+        $b.$fn(".btn-submit").click(function () {
+            if ($b.validator.validate('form1')) {
+                var data = $b.json.toObject('form1');
+                $b.xhr.jsonPost('', data, function (json) {
                     if (json.result) {
-                        $B.dialog.alert('保存成功',function(){}, "ok");
+                        $b.dialog.alert('保存成功',function(){}, "ok");
                     } else {
-                        $B.dialog.alert(json.message,null,'error');
+                        $b.dialog.alert(json.message,null,'error');
                     }
                 });
             }
-        }
+        });
     }
 </script>`
 

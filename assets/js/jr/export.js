@@ -6,7 +6,7 @@
 
 //
 //  配置：
-//  expr.portal = '这里为导出项的类名';
+//  expo.portal = '这里为导出项的类名';
 //
 //  expr.checkParams = function (data) {
 //    //这里校验参数的准确性,data为Json格式
@@ -55,17 +55,17 @@ var expr = {
         var _appPath = window.appPath || this.appPath;
         var url = (_appPath == '/' ? '' : _appPath)
             + this.handlerPrefix
-            + 'setup?portal=' + expr.portal
+            + 'setup?portal=' + expo.portal
             + '&params=' + expr._getParams();
         PW.getTargetWindow(url, title || '导出数据', width || 400, height || 300);
     },
     search: function (id) {
         if (jr.dataGrid) { //jr
             var dg = jr.dataGrid(id);
-            dg.options({url: expr.getDataUrl()});
+            dg.options({url: expo.getDataUrl()});
             dg.load();
         } else {
-            $('#' + id).datagrid({url: expr.getDataUrl()});
+            $('#' + id).datagrid({url: expo.getDataUrl()});
         }
     },
     reload: function (id) {
@@ -80,7 +80,7 @@ var expr = {
         var _appPath = window.appPath || this.appPath;
         var url = (_appPath == '/' ? '' : _appPath)
             + this.handlerPrefix
-            + 'getTotalView?portal=' + expr.portal
+            + 'getTotalView?portal=' + expo.portal
             + '&params=' + expr._getParams();
 
         jr.xhr.post(url, {}, function (json) {

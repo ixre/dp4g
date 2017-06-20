@@ -163,7 +163,7 @@ datagrid.prototype = {
             html += '</tr>';
         }
 
-        html += '</table><div style="clear:both"></div>';
+        html += "</table>";
 
         //gridview的第1个div
         this.gridView.innerHTML = html;

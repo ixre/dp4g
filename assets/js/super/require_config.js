@@ -29,7 +29,7 @@ require.config({
             'jquery.easyui':{
                 deps:['jquery']
             },
-            'jr/export':{
+            'x/export':{
                 deps:['jr/core']
             },
             'mui/component':{

@@ -96,7 +96,7 @@ function renderUi() {
         grid.style.height = jr.screen.height() + 'px';
         if (window.refresh == null) {
             window.refresh = function () {
-                expr.search('dg');
+                expo.search('dg');
             };
         }
     }
@@ -107,9 +107,7 @@ function renderUi() {
 // 设置数据控件参数
 function setExport() {
     if (window.expr) {
-        if (expr.ele == null || expr.ele.length == 0) {
-            expr.ele = 'search_bar';
-        }
+
         if (expr.checkParams == null) {
             expr.checkParams = function (data) {
                 return true;
