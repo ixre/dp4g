@@ -1,6 +1,6 @@
 var URL_ARGS = '200606001';
 require.config({
-        //By default load any module IDs from scripts/app
+        //By default load any module IDs from scripts/serve
         baseUrl: (baseJsUrl ||'') + '/assets/js/',
         urlArgs:function(id,url){ //防止缓存
            return (url.indexOf('?') == -1?'?':'&')+URL_ARGS;
@@ -29,7 +29,7 @@ require.config({
             'jquery.easyui':{
                 deps:['jquery']
             },
-            'x/export':{
+            'extra/export':{
                 deps:['jr/core']
             },
             'mui/component':{

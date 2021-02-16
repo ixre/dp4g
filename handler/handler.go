@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 @ z3q.net.
+ * Copyright 2015 @ to2.net.
  * name : handler
  * author : jarryliu
  * date : 2016-07-19 19:41
@@ -12,7 +12,7 @@ import (
 	"errors"
 	"github.com/jsix/dp4g/handler/conf"
 	"github.com/jsix/dp4g/handler/parser"
-	"github.com/jsix/gof"
+	"github.com/ixre/gof"
 	"net/http"
 	"os"
 	"sync"

@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 @ z3q.net.
+ * Copyright 2015 @ to2.net.
  * name : go
  * author : jarryliu
  * date : 2016-07-20 10:49
@@ -11,7 +11,7 @@ package util
 import (
 	"errors"
 	"github.com/jsix/dp4g/handler/conf"
-	"github.com/jsix/gof/shell"
+	"github.com/ixre/gof/shell"
 	"io/ioutil"
 	"os"
 )

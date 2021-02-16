@@ -181,7 +181,7 @@ CodeMirror.defineMode("haxe", function(config, parserConfig) {
       if(t.name == importname) return;
     state.importedtypes = { name: importname, next: state.importedtypes };
   }
-  // Combinator utils
+  // Combinator util
 
   var cx = {state: null, column: null, marked: null, cc: null};
   function pass() {

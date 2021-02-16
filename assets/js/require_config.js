@@ -1,6 +1,6 @@
 
 require.config({
-        //By default load any module IDs from scripts/app
+        //By default load any module IDs from scripts/serve
         baseUrl: (baseJsUrl ||'') + '/assets/js/',
         //except, if the module ID starts with "lib"
         paths: {

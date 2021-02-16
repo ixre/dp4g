@@ -43,7 +43,7 @@
             state.stack.unshift(stateType._string);
           } else if (stream.match(/^\/\*/)) { //comments starting with /*
             state.stack.unshift(stateType.comment);
-            state.commentType = commentType.slash;
+            state.commentType = commenproto.Slash;
           } else if (stream.match(/^\(\*/)) { //comments starting with (*
             state.stack.unshift(stateType.comment);
             state.commentType = commentType.parenthesis;
@@ -69,7 +69,7 @@
 
         case stateType.comment:
           while (state.stack[0] === stateType.comment && !stream.eol()) {
-            if (state.commentType === commentType.slash && stream.match(/\*\//)) {
+            if (state.commentType === commenproto.Slash && stream.match(/\*\//)) {
               state.stack.shift(); // Clear flag
               state.commentType = null;
             } else if (state.commentType === commentType.parenthesis && stream.match(/\*\)/)) {

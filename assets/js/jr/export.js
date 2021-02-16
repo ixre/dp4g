@@ -24,7 +24,7 @@ if (!window.jr) {
 var expr = {
     ele: 'search_bar',
     appPath: '/',
-    handlerPrefix: '/export/',
+    handlerPrefix: '../export/',
     portal: '',
     _getParams: function () {
         var e = document.getElementById(this.ele);
@@ -41,7 +41,7 @@ var expr = {
             var _appPath = window.appPath || this.appPath;
             return (_appPath == '/' ? '' : _appPath)
                 + this.handlerPrefix
-                + 'getExportData?portal=' + this.portal
+                + 'fetchData?portal=' + this.portal
                 + '&params=' + this._getParams();
         }
         return null;

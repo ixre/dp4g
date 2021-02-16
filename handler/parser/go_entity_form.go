@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 @ z3q.net.
+ * Copyright 2015 @ to2.net.
  * name : entity_form
  * author : jarryliu
  * date : 2016-07-20 13:35
@@ -23,19 +23,19 @@ const (
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" href="{{.Var.StaticServe}}/assets/su/semantic.min.css?spam={{.Var.Spam}}"/>
+    <link rel="stylesheet" href="{{.Var.StaticPath}}/assets/su/semantic.min.css?spam={{.Var.Spam}}"/>
 </head>
 <body>
     `
 	goEntityScript = `
-<script src="{{.Var.StaticServe}}/assets/js/lib/jquery.3x.js?spam={{.Var.Spam}}"></script>
-<script src="{{.Var.StaticServe}}/assets/su/semantic.min.js?spam={{.Var.Spam}}"></script>
-<script src="{{.Var.StaticServe}}/assets/js/require.js?spam={{.Var.Spam}}"></script>
+<script src="{{.Var.StaticPath}}/assets/js/lib/jquery.3x.js?spam={{.Var.Spam}}"></script>
+<script src="{{.Var.StaticPath}}/assets/su/semantic.min.js?spam={{.Var.Spam}}"></script>
+<script src="{{.Var.StaticPath}}/assets/js/require.js?spam={{.Var.Spam}}"></script>
 
 <script type="text/javascript">
     var entity = {};
 
-    var baseJsUrl ={{.Var.StaticServe}};
+    var baseJsUrl ={{.Var.StaticPath}};
     require([baseJsUrl + '/assets/js/require_config.js'], function () {
         require(['base'], pageLoad);
     });
@@ -48,10 +48,10 @@ const (
             if ($b.validator.validate('form1')) {
                 var data = $b.json.toObject('form1');
                 $b.xhr.jsonPost('', data, function (json) {
-                    if (json.result) {
+                    if (!json["ErrCode"]) {
                         $b.dialog.alert('保存成功',function(){}, "ok");
                     } else {
-                        $b.dialog.alert(json.message,null,'error');
+                        $b.dialog.alert(json["ErrMsg"],null,'error');
                     }
                 });
             }
@@ -61,7 +61,7 @@ const (
 
 	goEntitySaveButton = `
     <div class="field">
-        <div class="ui primary button" id="btn_save">
+        <div class="gra-btn gra-btn-inline" id="btn_save">
            提交
         </div>
     </div>`

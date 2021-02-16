@@ -7,7 +7,7 @@
 <body>
 
 <div id="form1" class="ui form margin" style="padding:10px">
-    <div class="two fields">
+    <div class="two col clearfix">
         <div class="field">
             <label>C# Code：</label>
             <div class="ui input code">
@@ -16,7 +16,7 @@
         </div>
         <div class="field">
             <label>Go Code：</label>
-            <div class="ui input">
+            <div class="gra-form-col">
                 <textarea field="code" rows="20"></textarea>
             </div>
         </div>
@@ -26,7 +26,7 @@
     <div class="field right">
 
 
-        <div class="ui primary button" id="btn_save">
+        <div class="gra-btn gra-btn-inline btn-submit" id="btn_save">
             Decode
         </div>
 
@@ -46,9 +46,9 @@
 
 </div>
 
-<script src="{{.Var.StaticServe}}/assets/js/lib/jquery.3x.js?span={{.TimeSpan}}"></script>
-<script src="{{.Var.StaticServe}}/assets/su/semantic.min.js?span={{.TimeSpan}}"></script>
-<script src="{{.Var.StaticServe}}/assets/js/jr/core.js?span={{.TimeSpan}}"></script>
+<script src="{{.Var.StaticPath}}/assets/js/lib/jquery.3x.js?span={{.TimeSpan}}"></script>
+<script src="{{.Var.StaticPath}}/assets/su/semantic.min.js?span={{.TimeSpan}}"></script>
+<script src="{{.Var.StaticPath}}/assets/js/jr/core.js?span={{.TimeSpan}}"></script>
 
 <script type="text/javascript">
     function decode() {
